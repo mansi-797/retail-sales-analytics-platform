@@ -1,0 +1,573 @@
+{
+  "datasets": [
+    {
+      "name": "ba51d142",
+      "displayName": "dashboard_kpis",
+      "config": {
+        "version": "1.1",
+        "source": "fmcg.gold.dashboard_kpis",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "0ad7da20",
+      "displayName": "sales_summary",
+      "config": {
+        "version": "1.1",
+        "source": "fmcg.gold.sales_summary",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "47728de1",
+      "displayName": "category_sales",
+      "config": {
+        "version": "1.1",
+        "source": "fmcg.gold.category_sales",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "8b21ded3",
+      "displayName": "product_sales",
+      "config": {
+        "version": "1.1",
+        "source": "fmcg.gold.product_sales",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "4f90b4d6",
+      "displayName": "Top Selling Products and Categories Overview",
+      "queryLines": [
+        "SELECT\r\n",
+        "    product_name,\r\n",
+        "    category,\r\n",
+        "    total_sales\r\n",
+        "FROM fmcg.gold.product_sales\r\n",
+        "ORDER BY total_sales DESC\r\n",
+        "LIMIT 10;"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "08326ad9",
+      "displayName": "Executive Sales Overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "total-sales",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ba51d142",
+                  "fields": [
+                    {
+                      "name": "sum(total_sales)",
+                      "expression": "SUM(`total_sales`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Total Sales\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_sales)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "total-net-sales-1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ba51d142",
+                  "fields": [
+                    {
+                      "name": "sum(total_net_sales)",
+                      "expression": "SUM(`total_net_sales`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Total Net Sales\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_net_sales)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 2,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "total-quantity",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ba51d142",
+                  "fields": [
+                    {
+                      "name": "sum(total_quantity)",
+                      "expression": "SUM(`total_quantity`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "**Total Quantity**.\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_quantity)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 2,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "total-profit",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ba51d142",
+                  "fields": [
+                    {
+                      "name": "sum(total_profit)",
+                      "expression": "SUM(`total_profit`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": {
+                  "value": "Calculated Profit\n<p>&nbsp;</p>\n",
+                  "fields": []
+                },
+                "description": {
+                  "value": "Net Sales − Extended Wholesale Cost. Negative value reflects the source-derived sales and wholesale-cost data.\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_profit)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 2,
+            "width": 3,
+            "height": 3
+          }
+        },
+        {
+          "widget": {
+            "name": "yearly-sales-trend",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "0ad7da20",
+                  "fields": [
+                    {
+                      "name": "sales_year",
+                      "expression": "`sales_year`"
+                    },
+                    {
+                      "name": "sum(total_sales)",
+                      "expression": "SUM(`total_sales`)"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`year_status` IN ('Full Year')"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Yearly Sales Trend — Full Years\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "sales_year",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_sales)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 5,
+            "width": 6,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "sales-by-category",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "47728de1",
+                  "fields": [
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "sum(total_sales)",
+                      "expression": "SUM(`total_sales`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Total Sales by Category\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_sales)",
+                  "axis": {
+                    "title": "Total Sales"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 5,
+            "width": 6,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "top-10-products-by-sales",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4f90b4d6",
+                  "fields": [
+                    {
+                      "name": "product_name",
+                      "expression": "`product_name`"
+                    },
+                    {
+                      "name": "sum(total_sales)",
+                      "expression": "SUM(`total_sales`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Top 10 Products by Total Sales\n<p>&nbsp;</p>\n\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "product_name",
+                  "axis": {
+                    "title": "Product"
+                  },
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_sales)",
+                  "axis": {
+                    "title": "Total Sales"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 12,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "e1cc5143",
+            "multilineTextboxSpec": {
+              "lines": [
+                "**DATA COVERAGE**<br>**Jan 2, 1998 – Jan 2, 2003 | 2003 contains partial-year data (Jan 1–Jan 2).**<br>*Source: Synthetic TPC-DS retail benchmark dataset*\n",
+                "<p>&nbsp;</p>\n"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "198836e8",
+            "multilineTextboxSpec": {
+              "lines": [
+                "## 🤖 Sales Intelligence Agent\n",
+                "\n",
+                "Ask questions about **sales performance, products, categories, and business trends** using natural language.\n",
+                "\n",
+                "### 💡 Try asking\n",
+                "\n",
+                "- **Which products generated the highest sales?**\n",
+                "- **Which category has the highest revenue?**\n",
+                "- **How have sales changed over the years?**\n",
+                "- **What are the key sales trends in the data?**\n",
+                "\n",
+                "**Ask Genie below to explore the data with AI.**\n",
+                "<p>&nbsp;</p>\n"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 18,
+            "width": 12,
+            "height": 5
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "canvasBackgroundColor": {
+        "light": "#000000",
+        "dark": "#000000"
+      },
+      "widgetBackgroundColor": {
+        "light": "#100F0F",
+        "dark": "#100F0F"
+      },
+      "widgetBorderColor": {
+        "dark": "#3B53C3"
+      },
+      "fontColor": {
+        "light": "#FFFFFF",
+        "dark": "#E8ECF0"
+      },
+      "selectionColor": {
+        "light": "#2272B4",
+        "dark": "#1144CF"
+      },
+      "widgetHeaderAlignment": "LEFT",
+      "widgetPadding": 8,
+      "widgetMargin": 8,
+      "widgetCornerRadius": 4,
+      "fontSettings": {
+        "base": {
+          "fontColor": {
+            "light": "#FFFFFF",
+            "dark": "#E8ECF0"
+          },
+          "fontWeight": 400,
+          "fontStyle": "FONT_STYLE_NORMAL"
+        }
+      },
+      "gridLineColor": {
+        "light": "#FFFFFF"
+      },
+      "axisLineColor": {
+        "light": "#FFFFFF"
+      }
+    },
+    "applyModeEnabled": false
+  }
+}
