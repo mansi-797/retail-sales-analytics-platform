@@ -183,11 +183,11 @@ The dashboard includes:
 - Total Sales by Category
 - Top 10 Products by Total Sales
 <p align="center">
-  <img src="dashboard1.png" width="800">
+  <img src="dashbord1.png" width="800">
 </p>
 
 <p align="center">
-  <img src="dashboard2.png" width="800">
+  <img src="dashbord2.png" width="800">
 </p>
 
 
